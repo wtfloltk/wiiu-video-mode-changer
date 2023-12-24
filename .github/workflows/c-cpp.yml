@@ -1,9 +1,6 @@
 name: OK Check / Progress Push PPC
 
 on:
-  commit_comment: 
-    branches:
-      - main
   pull_request:
     branches:
       - main
