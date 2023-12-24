@@ -18,7 +18,10 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
     - name: Run Make (OK)
-      run: make -j$(nproc)
+      run: |
+        make -j$(nproc)
+        elf2rpx build/vidchange.elf build/vidchange.rpx
+        
     - uses: actions/upload-artifact@master
       with:
         name: game
