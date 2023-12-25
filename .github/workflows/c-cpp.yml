@@ -21,11 +21,12 @@ jobs:
     - name: Dependencies
       run: | 
         dkp-pacman -S wiiu-dev --no-confirm
-        dkp-pac -S wut-tools --no-confirm
+        dkp-pacman -S wut-tools --no-confirm
         
     - name: Run Make (OK)
       run: |
         make -j$(nproc)
+        elf2rpx build/vidchange.elf build/vidchange.rpx
         
     - uses: actions/upload-artifact@master
       with:
