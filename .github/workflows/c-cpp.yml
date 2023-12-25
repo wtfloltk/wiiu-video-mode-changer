@@ -20,8 +20,8 @@ jobs:
       
     - name: Dependencies
       run: | 
-        dkp-pacman -Syu wiiu-dev --noconfirm
-        dkp-pacman -Syu wut-tools --noconfirm
+        dkp-pacman -S wiiu-dev --noconfirm
+        dkp-pacman -S wut-tools --noconfirm
         
     - name: Run Make (OK)
       run: |
