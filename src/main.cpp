@@ -29,7 +29,7 @@ static unsigned int getButtonsDown();
 #define OSScreenFlipBuffers() OSScreenFlipBuffersEx(0); OSScreenFlipBuffersEx(1);
 
 const char *outPortStr[] = { "HDMI", "Component", "Composite/S-Video", "Composite/SCART" };
-const char *outResStr[] = { "720p (fallback?)", "576i PAL50", "480i", "480p", "720p", "720p 3D?", "1080i", "1080p", "720p (again?)", "720p (No Signal from Component?)", "480i PAL60", "720p (yet again?)", "720p (50Hz, glitchy gamepad)", "1080i (50Hz, glitchy gamepad)", "1080p (50Hz, glitchy gamepad)" };
+const char *outResStr[] = { "720p (fallback?)", "576i PAL50", "480i", "480p", "720p", "720p 3D?", "1080i", "1080p", "720p (again?)", "720p (No Signal from Component?)", "480i PAL60", "720p (yet again?)", "720p (50Hz, glitchy gamepad)", "1080i (50Hz, glitchy gamepad)", "1080p (50Hz, glitchy gamepad)", "4K" };
 
 extern "C" int Menu_Main(void)
 {
@@ -147,7 +147,7 @@ extern "C" int Menu_Main(void)
 			else if(curSel == 2) //Resolution
 			{
 				wantRes++;
-				if(wantRes > 14)
+				if(wantRes > 15)
 					wantRes = 1;
 			}
 			redraw = 1;
@@ -204,7 +204,7 @@ extern "C" int Menu_Main(void)
 			{
 				wantRes--;
 				if(wantRes < 0)
-					wantRes = 14;
+					wantRes = 15;
 			}
 			redraw = 1;
 		}
