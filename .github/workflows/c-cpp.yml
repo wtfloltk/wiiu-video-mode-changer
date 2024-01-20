@@ -21,6 +21,7 @@ jobs:
     - name: Run Make (OK)
       run: |
         make -j$(nproc)
+        make
         elf2rpl build/vidchange.elf build/vidchange.rpx
         
     - uses: actions/upload-artifact@master
