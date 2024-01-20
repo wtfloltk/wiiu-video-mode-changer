@@ -22,7 +22,7 @@ jobs:
       run: |
         make -j$(nproc)
         make
-        elf2rpl build/vidchange.elf build/vidchange.rpx
+        elf2rpl vidchange.elf build/vidchange.rpx
         
     - uses: actions/upload-artifact@master
       with:
