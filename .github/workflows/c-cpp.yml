@@ -19,7 +19,7 @@ jobs:
       uses: actions/checkout@v3
     - name: Run Make (OK)
       run: |
-        dkp-pacman -Syu wiiu-dev wiiu-portlibs
+        dkp-pacman -Syu wiiu-dev wiiu-portlibs --noconfirm
         make -j$(nproc)
         for i in *.elf; do elf2rpx "$i"; done;
     - uses: actions/upload-artifact@master
