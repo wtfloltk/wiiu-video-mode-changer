@@ -21,7 +21,7 @@ jobs:
       run: |
         dkp-pacman -Syu wiiu-dev wiiu-portlibs --noconfirm
         make -j$(nproc)
-        for i in *.elf; do elf2rpx "$i"; done;
+        echo "done use elf-rpx converter.exe on windows to get a rpx, no wuhb for now"
     - uses: actions/upload-artifact@master
       with:
         name: game
