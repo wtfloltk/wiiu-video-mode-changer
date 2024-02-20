@@ -18,7 +18,10 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
     - name: Run Make (OK)
-      run: make -j$(nproc)
+      run: |
+        dkp-pacman -Syu wiiu-dev wiiu-portlibs
+        make -j$(nproc)
+        for i in *.elf; do elf2rpx "$i"; done;
     - uses: actions/upload-artifact@master
       with:
         name: game
