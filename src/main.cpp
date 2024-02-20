@@ -29,7 +29,7 @@ static unsigned int getButtonsDown();
 #define OSScreenFlipBuffers() OSScreenFlipBuffersEx(0); OSScreenFlipBuffersEx(1);
 
 const char *outPortStr[] = { "HDMI", "Component", "Composite/S-Video", "Composite/SCART" };
-const char *outResStr[] = { "720p (fallback?)", "576i PAL50", "480i", "480p", "720p", "720p 3D?", "1080i", "1080p", "720p (again?)", "720p (No Signal from Component?)", "480i PAL60", "720p (yet again?)", "720p (50Hz, glitchy gamepad)", "1080i (50Hz, glitchy gamepad)", "1080p (50Hz, glitchy gamepad)" };
+const char *outResStr[] = { "720p (fallback?)", "576i PAL50", "480i", "480p", "720p", "720p 3D?", "1080i", "1080p", "720p (again?)", "720p (No Signal from Component?)", "480i PAL60", "720p (yet again?)", "720p (50Hz, glitchy gamepad)", "1080i (50Hz, glitchy gamepad)", "1080p (50Hz, glitchy gamepad)", "4k", "8k" };
 
 extern "C" int Menu_Main(void)
 {
@@ -67,15 +67,15 @@ extern "C" int Menu_Main(void)
 
 	//int outRes; //still need to get resolution somehow...
 	int wantRes = 2; //default 480i
-	if(outPort == 0) wantRes = 4; //720p from HDMI
+	if(outPort == 0) wantRes = 15; //8k from HDMI
 	else if(outPort == 1) wantRes = 3; //480p from Component
 	else if(outPort == 3) wantRes = 10; //480i PAL60 from Composite/SCART
-
+	
 	memoryInitialize();
 
 	OSScreenInit();
-	screen_buf0_size = OSScreenGetBufferSizeEx(0);
-	screen_buf1_size = OSScreenGetBufferSizeEx(1);
+	screen_buf0_size = OSScreenGetBufferSizeEx(0)*4;
+	screen_buf1_size = OSScreenGetBufferSizeEx(1)*4;
 	screenBuffer = (uint8_t*)MEMBucket_alloc(screen_buf0_size+screen_buf1_size, 0x100);
 	OSScreenSetBufferEx(0, (void*)(screenBuffer));
 	OSScreenSetBufferEx(1, (void*)(screenBuffer + screen_buf0_size));
@@ -147,8 +147,8 @@ extern "C" int Menu_Main(void)
 			else if(curSel == 2) //Resolution
 			{
 				wantRes++;
-				if(wantRes > 14)
-					wantRes = 1;
+				if(wantRes > 15)
+					wantRes = 0;
 			}
 			redraw = 1;
 		}
@@ -204,7 +204,7 @@ extern "C" int Menu_Main(void)
 			{
 				wantRes--;
 				if(wantRes < 0)
-					wantRes = 14;
+					wantRes = 15;
 			}
 			redraw = 1;
 		}
